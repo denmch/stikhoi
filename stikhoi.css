@@ -1,0 +1,56 @@
+/* STIKHOI: Styling Verse on the Web, Den McHenry, 3/29/2012. Thanks
+   to Markos Giannopoulos for the hint about nth-child selectors, and
+   to David Primmer for suggesting CSS comments to clarify usage. */
+
+/* VERSE (.vrs)
+   This class marks an ordered list as a snippet (or more) of verse to be
+   set with a given margin and with numbers suppressed, which will be
+   called out as desired by another class (i.e., .s16, etc.). */
+
+ol.vrs {
+        margin-left:5em;
+        list-style:none;
+        position:relative;
+}
+
+/* INDENT FROM THE 2ND LINE (.in2)
+   For elegiacs (vel sim.). Verses are indented alternately beginning with the
+   SECOND line cited. */
+
+ol.in2 li:nth-child(2n+2) {
+        text-indent:1.5em;
+}
+
+/* INDENT FROM THE 1ST LINE (.in1)
+   For elegiacs (vel sim.), when the lines printed begin with an indented line. */
+
+ol.in1 li:nth-child(2n+1) {
+        text-indent:1.5em;
+}
+
+/* STARTING LINE (.s16, etc.)
+   (Read these class names as 'starting line ends with a 1 or a 6,' and so on.)
+   Show the line number of each line ending with a 5 or a 0, based on the final
+   digit of the first line of the passage. If the final digit of the first line
+   cited is a 1 or a 6, choose .s16; for a 2 or a 7 choose .s27; for a 3 or an
+   8 choose .s38; for a 4 or a 9 choose .s49; and for a 5 or a 0 choose .s50. */
+
+.s16 li:nth-child(5n+5) {
+        list-style:decimal;
+}
+
+.s27 li:nth-child(5n+4) {
+        list-style:decimal;
+}
+
+.s38 li:nth-child(5n+3) {
+        list-style:decimal;
+}
+
+.s49 li:nth-child(5n+2) {
+        list-style:decimal;
+}
+
+.s50 li:nth-child(5n+1) {
+        list-style:decimal;
+}
