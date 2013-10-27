@@ -11,7 +11,9 @@ It occurred to me that there should be a way to display verse on the web with co
       <li>Ausoniis umbraque erraret Crassus inulta</li>
       <li>bella geri placuit nullos habitura triumphos?</li>
     </ol>
-    
+
+Lucan 1.9—12.
+
 In this example, the list will begin with the ninth line of the poem, but will only number line 10. The class `.vrs` indicates a piece of verse, and the class `.s49` means that "the starting line ends with a 4 or a 9." The stylesheet tells the browser to number the appropriate lines.
 
 We can also indent lines, if needed, with another class.
