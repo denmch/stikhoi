@@ -1,56 +1,101 @@
-/* STIKHOI: Styling Verse on the Web, Den McHenry, 3/29/2012. Thanks
-   to Markos Giannopoulos for the hint about nth-child selectors, and
-   to David Primmer for suggesting CSS comments to clarify usage. */
+/* STIKHOI v.3: CSS for rendering verse snippets on
+   the web, with a special eye toward Greek & Latin
+   poetry.
 
-/* VERSE (.vrs)
-   This class marks an ordered list as a snippet (or more) of verse to be
-   set with a given margin and with numbers suppressed, which will be
-   called out as desired by another class (i.e., .s16, etc.). */
+   Author: Den McHenry
+*/
 
-ol.vrs {
-        margin-left:5em;
-        list-style:none;
-        position:relative;
+/* This is a block of verse, 30 ems wide and centered. */
+.verse {
+  counter-reset: line-prior;
+  margin: 0 auto;
+  width: 30em;
+  padding: 1.5em 3em;
 }
 
-/* INDENT FROM THE 2ND LINE (.in2)
-   For elegiacs (vel sim.). Verses are indented alternately beginning with the
-   SECOND line cited. */
-
-ol.in2 li:nth-child(2n+2) {
-        text-indent:1.5em;
+.verse p {
+  margin: 0.125em;
+  padding: 0.125em;
 }
 
-/* INDENT FROM THE 1ST LINE (.in1)
-   For elegiacs (vel sim.), when the lines printed begin with an indented line. */
-
-ol.in1 li:nth-child(2n+1) {
-        text-indent:1.5em;
+/* Count the lines, but hide the count. */
+.verse > p:before {
+  counter-increment: line-prior;
+  content: counter(line-prior);
+  visibility: hidden;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;*/
 }
 
-/* STARTING LINE (.s16, etc.)
-   (Read these class names as 'starting line ends with a 1 or a 6,' and so on.)
-   Show the line number of each line ending with a 5 or a 0, based on the final
-   digit of the first line of the passage. If the final digit of the first line
-   cited is a 1 or a 6, choose .s16; for a 2 or a 7 choose .s27; for a 3 or an
-   8 choose .s38; for a 4 or a 9 choose .s49; and for a 5 or a 0 choose .s50. */
-
-.s16 li:nth-child(5n+5) {
-        list-style:decimal;
+/* Display every 5th line for snippets preceded by a line ending with
+   a 0 or a 5. */
+.zero p:nth-child(5n+5):after, .five p:nth-child(5n+5):after {
+  content: counter(line-prior);
+  color: #666;
+  font-size: 75%;
+  line-height: 150%;
+  visibility: visible;
+  float: right;
 }
 
-.s27 li:nth-child(5n+4) {
-        list-style:decimal;
+/* Display every 5th line for snippets preceded by a line ending with
+   a 1 or a 6. */
+.one p:nth-child(5n+4):after, .six p:nth-child(5n+4):after {
+  content: counter(line-prior);
+  color: #666;
+  font-size: 75%;
+  line-height: 150%;
+  visibility: visible;
+  float: right;
+}
+/* Display every 5th line for snippets preceded by a line ending with
+   a 2 or a 7. */
+.two p:nth-child(5n+3):after, .seven p:nth-child(5n+3):after {
+  content: counter(line-prior);
+  color: #666;
+  font-size: 75%;
+  line-height: 150%;
+  visibility: visible;
+  float: right;
 }
 
-.s38 li:nth-child(5n+3) {
-        list-style:decimal;
+/* Display every 5th line for snippets preceded by a line ending with
+   a 3 or a 8. */
+.three p:nth-child(5n+2):after, .eight p:nth-child(5n+2):after {
+  content: counter(line-prior);
+  color: #666;
+  font-size: 75%;
+  line-height: 150%;
+  visibility: visible;
+  float: right;
 }
 
-.s49 li:nth-child(5n+2) {
-        list-style:decimal;
+/* Display every 5th line for snippets preceded by a line ending with
+   a 4 or a 9. */
+.four p:nth-child(5n+1):after, .nine p:nth-child(5n+1):after {
+  content: counter(line-prior);
+  color: #666;
+  font-size: 75%;
+  line-height: 150%;
+  visibility: visible;
+  float: right;
 }
 
-.s50 li:nth-child(5n+1) {
-        list-style:decimal;
+/* Indent even lines if the verse is quoted from an odd line. */
+.zero.couplets > p:nth-child(2n+0),
+.two.couplets > p:nth-child(2n+0),
+.four.couplets > p:nth-child(2n+0),
+.six.couplets > p:nth-child(2n+0),
+.eight.couplets > p:nth-child(2n+0)  {
+  text-indent: 1.5em;
+}
+
+/* Indents even lines if the verse is quoted from an even line. */
+.one.couplets > p:nth-child(2n+1),
+.three.couplets > p:nth-child(2n+1),
+.five.couplets > p:nth-child(2n+1),
+.seven.couplets > p:nth-child(2n+1),
+.nine.couplets > p:nth-child(2n+1)  {
+  text-indent: 1.5em;
 }
