@@ -1,7 +1,7 @@
 # STIKHOI
 =======
 
-This is my working standard for marking up verse through ordered lists in HTML using CSS. Special thanks go to Alun Salt for sharing my Google+ post on the subject and Markos Giannopoulos for responding to Alun’s share with a very helpful tip about using nth-child selectors to simplify the markup. It's since undergone a major overhaul.
+This is my working standard for marking up verse through HTML and CSS. Special thanks go to Alun Salt for sharing my Google+ post on the subject and Markos Giannopoulos for responding to Alun’s share with a very helpful tip about using nth-child selectors to simplify the markup. It's since undergone a major overhaul.
 
 ## Prior version
 
