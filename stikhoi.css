@@ -48,16 +48,16 @@ ol.verse li {
 }
 
 /* Indent even numbered lines for couplets. */
-[start$="1"].couplet li:nth-child(2n),
-[start$="2"].couplet li:nth-child(2n+1),
-[start$="3"].couplet li:nth-child(2n),
-[start$="4"].couplet li:nth-child(2n+1),
-[start$="5"].couplet li:nth-child(2n),
-[start$="6"].couplet li:nth-child(2n+1),
-[start$="7"].couplet li:nth-child(2n),
-[start$="8"].couplet li:nth-child(2n+1),
-[start$="9"].couplet li:nth-child(2n),
-[start$="0"].couplet li:nth-child(2n+1) {
+[start$="1"].couplets li:nth-child(2n),
+[start$="2"].couplets li:nth-child(2n+1),
+[start$="3"].couplets li:nth-child(2n),
+[start$="4"].couplets li:nth-child(2n+1),
+[start$="5"].couplets li:nth-child(2n),
+[start$="6"].couplets li:nth-child(2n+1),
+[start$="7"].couplets li:nth-child(2n),
+[start$="8"].couplets li:nth-child(2n+1),
+[start$="9"].couplets li:nth-child(2n),
+[start$="0"].couplets li:nth-child(2n+1) {
   text-indent: 1em;
 }
 
