@@ -32,7 +32,7 @@ Poems that have no special indentation features simply take the class `.verse`. 
 
 ### &#8212;Vergil, <cite>Aeneid</cite> 6. 845&#8211;50
 
-    <ol class="verse" start="845" lang="lat">
+    <ol class="verse" start="845" lang="la">
         <li>quo fessum rapitis, Fabii? Tu Maxumus ille es,</li>
         <li>unus qui nobis cunctando restituis rem.</li>
         <li>Excudent alii spirantia mollius aera,</li>
@@ -69,7 +69,7 @@ Other indentation patterns can be accomplished with additional classes. For exam
 
 It's convenient to assign letters to the lines in the strophe pattern, so that a four-line strophe would have A, B, C, and D lines per strophe. The last class necessary to coordinate the various patterns of line numbers and indentations would be `.from-B`, `.from-C`, or `.from-D`, to specify the line within the pattern from which the quotation begins.
 
-      <ol class="verse from-B indent-3-4" start="14" lang="lat">
+      <ol class="verse from-B indent-3-4" start="14" lang="la">
         <li>quem fors dierum cumque dabit, lucro</li>
         <li>adpone nec dulcis amores</li>
         <li>sperne, puer, neque tu choreas,</li>
