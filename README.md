@@ -83,4 +83,5 @@ It's convenient to assign letters to the lines in the strophe pattern, so that a
         <li>aut digito male pertinaci.</li>
       </ol>
 
-You can see this in action at Codepen: http://codepen.io/denmch/pen/acEIA
+<p data-height="268" data-theme-id="0" data-slug-hash="acEIA" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/denmch/pen/acEIA/'>STIKHOI</a> by Den McHenry (<a href='http://codepen.io/denmch'>@denmch</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"></script>
