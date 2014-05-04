@@ -1,101 +1,144 @@
-/* STIKHOI v.3: CSS for rendering verse snippets on
+/* STIKHOI v.4: CSS for rendering verse snippets on
    the web, with a special eye toward Greek & Latin
-   poetry.
+   poetry. Use with stikhoi.js for prettier numbers.
 
    Author: Den McHenry
 */
 
-/* This is a block of verse, 30 ems wide and centered. */
-.verse {
-  counter-reset: line-prior;
-  margin: 0 auto;
-  width: 30em;
-  padding: 1.5em 3em;
+/* FONT STYLES FOR PRETTY GREEK & LATIN */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|GFS+Didot|Gentium+Book+Basic:400,400italic,700&subset=latin,greek);
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-.verse p {
-  margin: 0.125em;
-  padding: 0.125em;
+[lang=grc] {
+  font-family: "GFS Didot", serif;
+  font-size: 1.2em;
 }
 
-/* Count the lines, but hide the count. */
-.verse > p:before {
-  counter-increment: line-prior;
-  content: counter(line-prior);
+[lang=lat] {
+  font-family: "Gentium Book Basic", serif;
+  font-size: 1.25em;
+}
+
+/* Suppress line numbers. */
+ol.verse {
+  margin-left: 2em;
+  padding-left: 0.5em;
+}
+ol.verse li {
+  list-style-type: none;
+  padding: 0.1em 0;
+}
+
+/* Reveal line numbers conditionally based
+	on the value of the start attribute. */
+[start$="1"] li:nth-child(5n),
+[start$="2"] li:nth-child(5n+4),
+[start$="3"] li:nth-child(5n+3),
+[start$="4"] li:nth-child(5n+2),
+[start$="5"] li:nth-child(5n+1),
+[start$="6"] li:nth-child(5n),
+[start$="7"] li:nth-child(5n+4),
+[start$="8"] li:nth-child(5n+3),
+[start$="9"] li:nth-child(5n+2),
+[start$="0"] li:nth-child(5n+1) {
+  list-style-type: decimal;
+}
+
+/* Indent even numbered lines for couplets. */
+[start$="1"].couplet li:nth-child(2n),
+[start$="2"].couplet li:nth-child(2n+1),
+[start$="3"].couplet li:nth-child(2n),
+[start$="4"].couplet li:nth-child(2n+1),
+[start$="5"].couplet li:nth-child(2n),
+[start$="6"].couplet li:nth-child(2n+1),
+[start$="7"].couplet li:nth-child(2n),
+[start$="8"].couplet li:nth-child(2n+1),
+[start$="9"].couplet li:nth-child(2n),
+[start$="0"].couplet li:nth-child(2n+1) {
+  text-indent: 1em;
+}
+
+/* STROPHES */
+/* Proper indentation for strophes. This varies depending
+	upon which line in the pattern begins the citation.
+	Lines within a strophe are given letters: A, B, C, & D. */
+
+ol:not(.from-B):not(.from-C).indent-3 li:nth-child(3n+3),
+.from-B.indent-3 li:nth-child(3n+2),
+.from-C.indent-3 li:nth-child(3n+1),
+ol:not(.from-B):not(.from-C):not(.from-D).indent-4 li:nth-child(4n+4),
+.from-B.indent-4 li:nth-child(4n+3),
+.from-C.indent-4 li:nth-child(4n+2),
+.from-D.indent-4 li:nth-child(4n+1) {
+  text-indent: 1em;
+  padding-bottom: 1em;
+}
+
+ol:not(.from-B):not(.from-C).indent-3-4 li:nth-child(4n+3),
+.from-B.indent-3-4 li:nth-child(4n+2),
+.from-C.indent-3-4 li:nth-child(4n+1),
+.from-D.indent-3-4 li:nth-child(4n) {
+  text-indent: 1em;
+}
+
+ol:not(.from-B):not(.from-C):not(.from-D).indent-3-4 li:nth-child(4n+4),
+.from-B.indent-3-4 li:nth-child(4n+3),
+.from-C.indent-3-4 li:nth-child(4n+2),
+.from-D.indent-3-4 li:nth-child(4n+1) {
+  text-indent: 2em;
+  padding-bottom: 1em;
+}
+
+/* JAVASCRIPT-DEPENDENT STYLES */
+
+/* A CSS counter that replaces the native
+   numbering of ordered lists. */
+
+/* Conceal line numbers in each ordered list. */
+ol.verse.jQuery li {
+  list-style-type: none;
+}
+
+/* Replace the OL with a CSS counter. */
+ol.verse.jQuery {
+  counter-reset: poem;
+  display: inline-block;
+}
+
+/* Each line item is counted. */
+ol.verse.jQuery li {
+  counter-increment: poem;
+}
+
+/* Prepare to display the counter after each line. */
+ol.verse.jQuery li:after {
+  content: counter(poem);
+  float: right;
+  padding-left: 3em;
+  color: #666;
+  font-family: "Gentium Book Basic";
+  font-size: 1rem;
+}
+
+/* Suppress the counter. */
+ol.verse.jQuery li:after,
+ol.verse.jQuery li:after {
   visibility: hidden;
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;*/
 }
 
-/* Display every 5th line for snippets preceded by a line ending with
-   a 0 or a 5. */
-.zero p:nth-child(5n+5):after, .five p:nth-child(5n+5):after {
-  content: counter(line-prior);
-  color: #666;
-  font-size: 75%;
-  line-height: 150%;
+/* Reveal counter where desired. */
+[start$="1"].jQuery li:nth-child(5n):after,
+[start$="2"].jQuery li:nth-child(5n+4):after,
+[start$="3"].jQuery li:nth-child(5n+3):after,
+[start$="4"].jQuery li:nth-child(5n+2):after,
+[start$="5"].jQuery li:nth-child(5n+1):after,
+[start$="6"].jQuery li:nth-child(5n):after,
+[start$="7"].jQuery li:nth-child(5n+4):after,
+[start$="8"].jQuery li:nth-child(5n+3):after,
+[start$="9"].jQuery li:nth-child(5n+2):after,
+[start$="0"].jQuery li:nth-child(5n+1):after {
   visibility: visible;
-  float: right;
-}
-
-/* Display every 5th line for snippets preceded by a line ending with
-   a 1 or a 6. */
-.one p:nth-child(5n+4):after, .six p:nth-child(5n+4):after {
-  content: counter(line-prior);
-  color: #666;
-  font-size: 75%;
-  line-height: 150%;
-  visibility: visible;
-  float: right;
-}
-/* Display every 5th line for snippets preceded by a line ending with
-   a 2 or a 7. */
-.two p:nth-child(5n+3):after, .seven p:nth-child(5n+3):after {
-  content: counter(line-prior);
-  color: #666;
-  font-size: 75%;
-  line-height: 150%;
-  visibility: visible;
-  float: right;
-}
-
-/* Display every 5th line for snippets preceded by a line ending with
-   a 3 or a 8. */
-.three p:nth-child(5n+2):after, .eight p:nth-child(5n+2):after {
-  content: counter(line-prior);
-  color: #666;
-  font-size: 75%;
-  line-height: 150%;
-  visibility: visible;
-  float: right;
-}
-
-/* Display every 5th line for snippets preceded by a line ending with
-   a 4 or a 9. */
-.four p:nth-child(5n+1):after, .nine p:nth-child(5n+1):after {
-  content: counter(line-prior);
-  color: #666;
-  font-size: 75%;
-  line-height: 150%;
-  visibility: visible;
-  float: right;
-}
-
-/* Indent even lines if the verse is quoted from an odd line. */
-.zero.couplets > p:nth-child(2n+0),
-.two.couplets > p:nth-child(2n+0),
-.four.couplets > p:nth-child(2n+0),
-.six.couplets > p:nth-child(2n+0),
-.eight.couplets > p:nth-child(2n+0)  {
-  text-indent: 1.5em;
-}
-
-/* Indents even lines if the verse is quoted from an even line. */
-.one.couplets > p:nth-child(2n+1),
-.three.couplets > p:nth-child(2n+1),
-.five.couplets > p:nth-child(2n+1),
-.seven.couplets > p:nth-child(2n+1),
-.nine.couplets > p:nth-child(2n+1)  {
-  text-indent: 1.5em;
 }
